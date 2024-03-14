@@ -1,0 +1,229 @@
+<section class="hero-unit hero-unit--large container" data-hero-unit="large">
+  <div class="container-inner hero-unit__content" data-search-box>
+    <div class="hero-unit__title text-center">
+      {{#if user_name}}
+    	Hello, {{user_name}}! How can we help you today?
+      {{else}}
+      {{dc 'system-support_center_header'}}
+      
+      {{/if}}
+      
+    </div>
+    {{search class='search-box search-box--hero-unit' instant=true placeholder='Search the CircleCI support knowledge base'}}
+  </div>
+</section>
+{{#is settings.toggle_custom_blocks 'yes'}}
+  <div class="custom-blocks container" id="custom-blocks">
+    <div class="container-inner">
+      <div class="row clearfix" >
+        {{#isnt settings.custom_block_1_type 'hidden'}}
+          <div class="column column--xs-12 column--sm-3 column--md-3 custom-block">
+            {{#is settings.custom_block_1_type 'custom'}}
+              <a class="custom-block__link" href="{{dc 'system-support_center_left_column_link'}}">
+                <div class="custom-block__icon">
+                  <img class="custom-block__image" src="{{settings.custom_block_1_icon}}" alt="">
+                </div>
+                <h3 class="custom-block__title" style="word-break:keep-all">{{dc 'system-support_center_left_column_title'}}</h3>
+                <p class="custom-block__desc">{{dc 'system-support_center_left_column_subtitle'}}
+
+</p>
+                <p class="custom-block__buttons">
+                  <span class="btn btn--primary">{{dc 'system-support_center_left_column_button'}}</span>
+                </p>
+              </a>
+            {{/is}}
+            {{#is settings.custom_block_1_type 'community'}}
+              {{#link 'community' class='custom-block__link'}}
+                <div class="custom-block__icon">
+                  <img class="custom-block__image" src="{{settings.custom_block_1_icon}}" alt="">
+                </div>
+                <h3 class="custom-block__title">{{settings.custom_block_1_title}}</h3>
+                <p class="custom-block__desc">{{settings.custom_block_1_subtitle}}</p>
+                <p class="custom-block__buttons">
+                  <span class="btn btn--primary">{{t 'show_all_articles'}}</span>
+                </p>
+              {{/link}}
+            {{/is}}
+            {{#is settings.custom_block_1_type 'submit_a_requests'}}
+              {{#link 'new_request' class='custom-block__link'}}
+                <div class="custom-block__icon">
+                  <img class="custom-block__image" src="{{settings.custom_block_1_icon}}" alt="">
+                </div>
+                <h3 class="custom-block__title">{{settings.custom_block_1_title}}</h3>
+                <p class="custom-block__desc">{{settings.custom_block_1_subtitle}}</p>
+                <p class="custom-block__buttons">
+                  <span class="btn btn--primary">{{t 'show_all_articles'}}</span>
+                </p>
+              {{/link}}
+            {{/is}}
+          </div>
+        {{/isnt}}
+        {{#isnt settings.custom_block_2_type 'hidden'}}
+          <div class="column column--xs-12 column--sm-3 column--md-3 custom-block">
+            {{#is settings.custom_block_2_type 'custom'}}
+              <a class="custom-block__link" href="{{dc 'system-support_center_center_column_link'}}">
+                <div class="custom-block__icon">
+                  <img class="custom-block__image" src="{{settings.custom_block_2_icon}}" alt="">
+                </div>
+                <h3 class="custom-block__title">{{dc 'system-support_center_center_column_title'}}</h3>
+                <p class="custom-block__desc">{{dc 'system-support_center_center_column_subtitle'}}</p>
+                <p class="custom-block__buttons">
+                  <span class="btn btn--primary">{{dc 'system-support_center_center_column_button'}}</span>
+                </p>
+              </a>
+            {{/is}}
+            {{#is settings.custom_block_2_type 'community'}}
+              {{#link 'community' class='custom-block__link'}}
+                <div class="custom-block__icon">
+                  <img class="custom-block__image" src="{{settings.custom_block_2_icon}}" alt="">
+                </div>
+                <h3 class="custom-block__title">{{settings.custom_block_2_title}}</h3>
+                <p class="custom-block__desc">{{settings.custom_block_2_subtitle}}</p>
+                <p class="custom-block__buttons">
+                  <span class="btn btn--primary">{{t 'show_all_articles'}}</span>
+                </p>
+              {{/link}}
+            {{/is}}
+            {{#is settings.custom_block_2_type 'submit_a_request'}}
+              {{#link 'new_request' class='custom-block__link'}}
+                <div class="custom-block__icon">
+                  <img class="custom-block__image" src="{{settings.custom_block_2_icon}}" alt="">
+                </div>
+                <h3 class="custom-block__title">{{settings.custom_block_2_title}}</h3>
+                <p class="custom-block__desc">{{settings.custom_block_2_subtitle}}</p>
+                <p class="custom-block__buttons">
+                  <span class="btn btn--primary">{{t 'show_all_articles'}}</span>
+                </p>
+              {{/link}}
+            {{/is}}
+          </div>
+        {{/isnt}}
+        {{#isnt settings.custom_block_3_type 'hidden'}}
+          <div class="column column--xs-12 column--sm-3 column--md-3 custom-block">
+            {{#is settings.custom_block_3_type 'custom'}}
+              <a class="custom-block__link" href="{{settings.custom_block_3_url}}">
+                <div class="custom-block__icon">
+                  <img class="custom-block__image" src="{{settings.custom_block_3_icon}}" alt="">
+                </div>
+                <h3 class="custom-block__title">{{dc 'system-support_center_right_column_title'}}</h3>
+                <p class="custom-block__desc">{{dc 'system-support_center_right_column_subtitle'}}
+
+</p>
+                <p class="custom-block__buttons">
+                  <span class="btn btn--primary">{{dc 'system-support_center_right_column_button'}}</span>
+                </p>
+              </a>
+            {{/is}}
+            {{#is settings.custom_block_3_type 'community'}}
+              {{#link 'community' class='custom-block__link'}}
+                <div class="custom-block__icon">
+                  <img class="custom-block__image" src="{{settings.custom_block_3_icon}}" alt="">
+                </div>
+                <h3 class="custom-block__title">{{settings.custom_block_3_title}}</h3>
+                <p class="custom-block__desc">{{settings.custom_block_3_subtitle}}</p>
+                <p class="custom-block__buttons">
+                  <span class="btn btn--primary">{{t 'show_all_articles'}}</span>
+                </p>
+              {{/link}}
+            {{/is}}
+            {{#is settings.custom_block_3_type 'submit_a_request'}}
+              {{#link 'new_request' class='custom-block__link'}}
+                <div class="custom-block__icon">
+                  <img class="custom-block__image" src="{{settings.custom_block_3_icon}}" alt="">
+                </div>
+                <h3 class="custom-block__title">{{settings.custom_block_3_title}}</h3>
+                <p class="custom-block__desc">{{settings.custom_block_3_subtitle}}</p>
+                <p class="custom-block__buttons">
+                  <span class="btn btn--primary">{{t 'show_all_articles'}}</span>
+                </p>
+              {{/link}}
+            {{/is}}
+          </div>
+        {{/isnt}}     
+        {{#isnt settings.custom_block_4_type 'hidden'}}
+          <div class="column column--xs-12 column--sm-3 column--md-3 custom-block">
+            {{#is settings.custom_block_4_type 'custom'}}
+              <a class="custom-block__link" href="{{settings.custom_block_4_url}}">
+                <div class="custom-block__icon">
+                  <img class="custom-block__image" src="{{settings.custom_block_4_icon}}" alt="">
+                </div>
+                <h3 class="custom-block__title">{{dc 'system-support_center_fourth_column_title'}}</h3>
+                <p class="custom-block__desc">{{dc 'system-support_center_fourth_column_subtitle'}}
+
+</p>
+                <p class="custom-block__buttons">
+                  <span class="btn btn--primary">{{dc 'system-support_center_fourth_column_button'}}</span>
+                </p>
+              </a>
+            {{/is}}
+            {{#is settings.custom_block_4_type 'Academy'}}
+              {{#link 'community' class='custom-block__link'}}
+                <div class="custom-block__icon">
+                  <img class="custom-block__image" src="{{settings.custom_block_4_icon}}" alt="">
+                </div>
+                <h3 class="custom-block__title">{{settings.custom_block_4_title}}</h3>
+                <p class="custom-block__desc">{{settings.custom_block_4_subtitle}}</p>
+                <p class="custom-block__buttons">
+                  <span class="btn btn--primary">{{t 'show_all_articles'}}</span>
+                </p>
+              {{/link}}
+            {{/is}}
+            {{#is settings.custom_block_4_type 'submit_a_request'}}
+              {{#link 'new_request' class='custom-block__link'}}
+                <div class="custom-block__icon">
+                  <img class="custom-block__image" src="{{settings.custom_block_4_icon}}" alt="">
+                </div>
+                <h3 class="custom-block__title">{{settings.custom_block_4_title}}</h3>
+                <p class="custom-block__desc">{{settings.custom_block_4_subtitle}}</p>
+                <p class="custom-block__buttons">
+                  <span class="btn btn--primary">{{t 'show_all_articles'}}</span>
+                </p>
+              {{/link}}
+            {{/is}}
+          </div>
+        {{/isnt}}        
+      </div>
+    </div>
+  </div>
+{{/is}}
+
+<div class="container">
+  <div class="container-inner">
+    {{#is settings.toggle_promoted_articles 'yes'}}
+      {{#if promoted_articles}}
+        <section class="promoted-articles" id="promoted-articles">
+          <h2 class="promoted-articles__title"><span class="fa fa-star promoted-articles__icon"></span> {{t 'promoted_articles'}}</h2>
+          <ul class="promoted-articles__articles">
+            {{#each promoted_articles}}
+              <li class="promoted-articles__item">
+                <a class="promoted-articles__link" href="{{url}}">{{title}}</a>
+              </li>
+            {{/each}}
+          </ul>
+        </section>
+      {{/if}}
+    {{/is}}
+
+    {{#is settings.toggle_category_list 'yes'}}
+      <div class="category-list" id="category-list">
+        <h2 class="category-list__title"><span class="fa fa-magic category-list__icon"></span> {{t 'knowledge_base'}}</h2>
+        <div class="category-list__items">
+          {{#each categories}}
+            <div  class="category-list-item">
+              <a href="{{url}}" class="category-list-item__link">
+                <div class="category-list-item__content">
+                  <h3 class="category-list-item__title">{{name}}</h3>
+                  {{#if description}}
+                    <div class="category-list-item__desc">{{description}}</div>
+                  {{/if}}
+                </div>
+              </a>
+            </div>
+          {{/each}}
+        </div>
+      </div>
+    {{/is}}
+
+    
+  </div>
+</div>
