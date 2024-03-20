@@ -1,0 +1,237 @@
+<section class="hero-unit container" data-hero-unit>
+  <div class="container-inner hero-unit__content" data-search-box>
+    <div class="breadcrumbs-wrapper">
+      {{breadcrumbs}}
+    </div>
+    <h1 class="hero-unit__title">
+    {{#if article.internal}}
+      <span class="fa fa-lock" title="{{t 'internal'}}"> </span>
+    {{/if}} {{article.title}}
+    </h1>
+    <div class="article-meta">
+      <div class="article-meta__col article-meta__col--main">
+        <div class="entry-info ">
+          <div class="entry-info__avatar">
+            <div class="avatar">
+              <img class="user-avatar user-avatar--default" src="{{article.author.avatar_url}}" alt="Avatar">
+            </div>
+          </div>
+          <div class="entry-info__content">
+            {{#link 'user_profile'  class='author author--hero-unit' id=article.author.id}}
+              {{article.author.name}}
+            {{/link}}
+            <div class="meta meta--hero-unit">{{date article.edited_at}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="article-meta__col article-meta__col--button">
+        <button locale={{article.locale}} article-title="{{article.title}}" article-id={{article.id}} data-selected="true" aria-expanded="false" aria-haspopup="menu" type="button" id="editBtn" style="width: max-content; margin: 0px 10px;"><span class="fa fa-edit"></span>Edit</button>
+      </div>
+      <div class="article-meta__col article-meta__col--button">
+        {{subscribe}}
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container article-page">
+  <div class="container-inner">
+    <div class="article-page__container">
+      <article class="article clearfix" itemscope itemtype="http://schema.org/Article">
+
+        <div class="article__body markdown" itemprop="articleBody">
+          {{article.body}}
+        </div>
+
+        <div class="article__attachments">
+          {{#if attachments}}
+  <ul class="list-unstyled attachment-list">
+    {{#each attachments}}
+      <li class="attachment-list__item">
+        <span class="fa fa-paperclip attachment-list__icon"></span>
+        <a href="{{url}}" target="_blank">{{name}}</a>
+        <div class="meta">({{size}})</div>
+      </li>
+    {{/each}}
+  </ul>
+{{/if}}
+        </div>
+      </article>
+
+      {{#with article}}
+        <div class="article-votes article__wrapper">
+          <div class="article-votes__question">{{t 'was_this_article_helpful'}}</div>
+          <div class="article-votes__controls">
+            {{vote 'up' class='btn btn--default article-vote article-vote--up' selected_class='article-vote--voted' role='button'}}
+            {{vote 'down' class='btn btn--default article-vote article-vote--down' selected_class='article-vote--voted' role='button'}}
+          </div>
+          <div class="article-votes__count">
+            {{vote 'label' class='article-vote-label'}}
+          </div>
+          <div id="articleVoteDownTicketRequest" style="display:none;">
+           <p> <a href="https://support.circleci.com/hc/en-us/requests/new">{{dc 'system-_article-_article_not_helpful_support_link'}}. </a></p>
+          </div>
+          <div class="article__share">{{../share}}</div>
+        </div>
+      {{/with}}
+      
+      <script type='module' src='{{asset 'readability.js'}}'></script>
+      <script type="text/javascript">
+        var voteUp = document.getElementsByClassName('article-vote--up')[0];
+        var voteDown = document.getElementsByClassName('article-vote--down')[0];
+        var articleBody = document.getElementsByClassName('article__body markdown')[0];
+        var articleLinks = articleBody.getElementsByTagName('a');
+        
+        for (var currentLink = 0; currentLink < articleLinks.length; currentLink++) {
+        	articleLinks[currentLink].onclick = function(event) {
+            ga('send', 'event', 'Additional Resources Link', 'click', event.target.href);
+          }
+        }
+        
+        voteDown.onclick = function() {
+            var div = document.getElementById('articleVoteDownTicketRequest');
+            if (div.style.display = 'none') {
+                div.style.display = 'block';
+            }
+            ga('send', 'event', 'Was this article helpful?', 'click', 'No');
+        };
+        voteUp.onclick = function() {
+            var div = document.getElementById('articleVoteDownTicketRequest');
+            if (div.style.display != 'none') {
+                div.style.display = 'none';
+            }
+            ga('send', 'event', 'Was this article helpful?', 'click', 'Yes');
+        };
+      </script>
+
+      {{!-- Article Comments --}}
+
+      <section class="comments comments--article" id="comments" itemscope itemtype="http://schema.org/UserComments">
+        <div class="comments__header">
+          <h3 class="comments__heading">{{t 'comments'}}</h3>
+
+          <div class="comment-sorter">
+            <div class="comment-sorter__col comment-sorter__col--main">
+              {{t 'comments_count' count=article.comment_count}}
+            </div>
+
+            {{#if comments}}
+            <div class="comment-sorter__col comment-sorter__col--filters">
+              <div class="dropdown">
+                <a class="dropdown-toggle">{{t 'sort_by'}}</a>
+                <span class="dropdown-menu dropdown-menu-end" role="menu">
+                  {{#each comment_sorters}}
+                    <a aria-selected="{{selected}}" href="{{url}}" role="menuitem">{{name}}</a>
+                  {{/each}}
+                </span>
+              </div>
+            </div>
+            {{/if}}
+          </div>
+        </div>
+
+        {{#if comments}}
+          <ul class="comments__list">
+            {{#each comments}}
+              <li class="comment" id="{{anchor}}">
+                <div class="comment__inner">
+                  <div class="comment__content">
+
+                    <div class="entry-info comment__header">
+                      <div class="entry-info__avatar">
+                        <div class="avatar {{#if author.agent}}avatar--agent{{/if}}">
+                          <img class="user-avatar user-avatar--default" src="{{author.avatar_url}}" alt="Avatar">
+                        </div>
+                      </div>
+                      <div class="entry-info__content">
+                        <b class="author">
+                          {{#link 'user_profile' id=author.id}}
+                            {{author.name}}
+                          {{/link}}
+                        </b>
+                        <div class="meta">
+                          {{date edited_at}}
+                          {{#if editor}}
+                            ({{t 'edited'}} {{date edited_at timeago=true}})
+                          {{/if}}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="comment__body markdown">
+                      {{body}}
+                    </div>
+
+                    {{#if pending}}
+                      <span class="status-label status-label--pending">{{t 'pending_approval'}}</span>
+                    {{/if}}
+
+                    {{#with ticket}}
+                      <a href="{{url}}" target="_zendesk_lotus" class="status-label status-label--with-ticket">
+                        {{t 'request'}}{{id}}
+                      </a>
+                    {{/with}}
+                  </div>
+
+                  <div class="comment__voting-and-actions">
+                    {{#unless official}}
+                      <div class="vote">
+                        {{vote 'up' class='fa fa-angle-up btn vote-control vote-control--up' role='button'}}
+                        <div class="vote-sum">
+                          {{vote 'sum'}}
+                        </div>
+                        {{vote 'down' class='fa fa-angle-down btn vote-control vote-control--down' role='button'}}
+                      </div>
+                    {{/unless}}
+                    <div class="comment__actions">
+                      {{actions}}
+                    </div>
+                  </div>
+                </div>
+              </li>
+            {{/each}}
+          </ul>
+
+          {{pagination}}
+        {{/if}}
+
+        <p class="comments__callout">{{comment_callout}}</p>
+
+        {{#form 'comment' class='comment-form'}}
+          <div class="comment-form__avatar">
+            <div class="avatar avatar--comment">
+              {{user_avatar class='user-avatar user-avatar--default'}}
+            </div>
+          </div>
+          <div class="comment-form__body">
+            {{textarea 'body' rows='4'}}
+          </div>
+          <div class="comment-form__controls">
+            {{input type='submit'}}
+          </div>
+        {{/form}}
+      </section>
+
+      <div class="row clearfix article-page__related">
+        <div class="column column--sm-6">
+          <section class="section-articles">
+            <h3 class="section-articles__title">{{t 'articles_in_section'}}</h3>
+            <ul class="section-articles__list">
+              {{#each section.articles}}
+                <li class="section-articles__item">
+                  <a href="{{url}}" class="section-articles__link {{#is id ../article.id}}is-active{{/is}}">{{title}}</a>
+                </li>
+              {{/each}}
+            </ul>
+            {{#if section.more_articles}}
+              <a href="{{section.url}}" class="btn btn--default">{{t 'see_more'}}</a>
+            {{/if}}
+          </section>
+        </div>
+        <div class="column column--sm-6">
+          {{recent_articles}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
