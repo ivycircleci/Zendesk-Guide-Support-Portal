@@ -1,0 +1,69 @@
+</div>
+<!-- /.layout -->
+<footer class="footer container">
+  <div class="container-inner footer__inner">
+    <p class="footer__copyright">&copy; {{help_center.name}}</p>
+    <p class="footer__social-links">
+      {{#isnt settings.facebook_url '-'}}
+        <a href="{{settings.facebook_url}}" target="_blank" class="footer-social-link fa fa-facebook"></a>
+      {{/isnt}}
+      {{#isnt settings.twitter_url '-'}}
+        <a href="{{settings.twitter_url}}" target="_blank" class="footer-social-link fa fa-twitter"></a>
+      {{/isnt}}
+      {{#isnt settings.google_plus_url '-'}}
+        <a href="{{settings.google_plus_url}}" target="_blank" class="footer-social-link fa fa-google-plus"></a>
+      {{/isnt}}
+      {{#isnt settings.linkedin_url '-'}}
+        <a href="{{settings.linkedin_url}}" target="_blank" class="footer-social-link fa fa-linkedin"></a>
+      {{/isnt}}
+      {{#isnt settings.youtube_url '-'}}
+        <a href="{{settings.youtube_url}}" target="_blank" class="footer-social-link fa fa-youtube-play  "></a>
+      {{/isnt}}
+      {{#isnt settings.pinterest_url '-'}}
+        <a href="{{settings.pinterest_url}}" target="_blank" class="footer-social-link fa fa-pinterest-p"></a>
+      {{/isnt}}
+      {{#isnt settings.instagram_url '-'}}
+        <a href="{{settings.instagram_url}}" target="_blank" class="footer-social-link fa fa-instagram"></a>
+      {{/isnt}}
+    </p>
+    {{#if alternative_locales}}
+      <div class="dropdown footer__language-selector" aria-haspopup="true">
+        <a class="dropdown-toggle btn btn--default">
+          {{current_locale.name}}
+        </a>
+        <span class="dropdown-menu dropdown-menu-end" role="menu">
+          {{#each alternative_locales}}
+            <a href="{{url}}" dir="{{direction}}" rel="nofollow" role="menuitem">
+              {{name}}
+            </a>
+          {{/each}}
+        </span>
+      </div>
+    {{/if}}
+  </div>
+  <div class="container-inner footer__inner">
+  </div>
+</footer>
+
+<a href="#" class="scroll-to-top fa fa-angle-up" data-scroll-to-top></a>
+<script>var manual_incident = {name: "{{settings.incident_banner_name}}", status: "{{settings.incident_banner_status}}", body: "{{settings.incident_banner_text}}"};
+
+  setTimeout(function() { 
+    gtag('event', 'timing_complete', {
+      'name' : 'read',
+      'value' : 10000,
+      'event_category' : 'Page read' 
+    }); 
+  }, 10000);
+</script>
+<script src="{{asset 'environment.js'}}"></script>
+<script
+  src="https://static.zdassets.com/hc/assets/jquery-d5395f0b7ac5027403fc17855c46dbfc.js"></script>
+<script src="//cdn.jsdelivr.net/jquery.magnific-popup/1.0.0/jquery.magnific-popup.min.js"></script>
+<script src="//cdn.jsdelivr.net/highlight.js/9.10.0/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.statuspage.io/se-v2.js"></script>
+  <script src="{{asset 'SendSafelyZendesk.min.js'}}"></script>
+<script src="{{asset 'ab.js'}}"></script>
+<script src="{{asset 'showdown.min.js'}}"></script>
+<script src="{{asset 'moment.min.js'}}"></script>
+<script src="{{asset 'moment-timezone-with-data-10-year-range.min.js'}}"></script>
