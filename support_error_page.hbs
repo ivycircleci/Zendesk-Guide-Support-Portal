@@ -1,0 +1,28 @@
+<section class="hero-unit container">
+  <div class="container-inner hero-unit__content">
+    <h1 class="hero-unit__title text-center">{{t 'oops'}}</h1>
+  </div>
+</section>
+<div class="container error-page">
+  <div class="container-inner">
+
+    {{#is error 'unauthorized'}}
+      <h2 class="h4">{{link 'sign_in'}}</h2>
+    {{/is}}
+
+    {{#is error 'forbidden'}}
+       <h2 class="h4">{{t 'not_authorized'}}</h2>
+    {{/is}}
+
+    {{#is error 'not_found'}}
+      <h2 class="h4">{{t 'nonexistent_page'}}</h2>
+      <p>{{t 'mistyped_address_or_moved_page'}}</p>
+    {{/is}}
+
+    <p>
+     {{#link 'help_center'}}
+      {{t 'back_to_homepage'}}
+    {{/link}}
+    </p>
+  </div>
+</div>
