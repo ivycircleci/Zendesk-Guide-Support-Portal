@@ -1,0 +1,87 @@
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-19JHCX010J"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-19JHCX010J');
+</script>
+<div class="alertbox"></div>
+<div class="layout">
+  <header class="topbar container" data-topbar>
+    <div class="topbar__inner">
+      <div class="topbar__logo-wrapper">
+        	{{#link 'help_center' class='topbar__logo'}}
+          <img src="{{settings.logo}}" alt="{{t 'logo'}}" class="logo">
+        {{/link}}
+      </div>
+
+      <div class="topbar__buttons">
+        <button class="btn btn--topbar btn--toggle-search" data-toggle-search>
+          <span class="fa fa-search"></span>
+        </button>
+        <button type="button" class="tcon tcon-menu--xcross" aria-label="toggle menu" data-toggle-menu>
+          <span class="tcon-menu__lines" aria-hidden="true"></span>
+          <span class="tcon-visuallyhidden">toggle menu</span>
+        </button>
+      </div>
+
+      <div class="search-box search-box--topbar" data-search-topbar>
+        {{search instant=true}}
+      </div>
+
+      <div class="search-mobile" data-search-mobile>
+        <div class="container-inner">
+          {{search class='search-box search-box--mobile' instant=true}}
+        </div>
+      </div>
+
+      <div class="topbar__controls" data-menu>
+        <a class='headerLink' style="font-weight:400; color:white; text-decoration:none;" href="https://status.circleci.com/" target="_blank">Status</a>
+        <a class='headerLink' style="font-weight:400; color:white; text-decoration:none;" href="https://circleci.com/developer" target="_blank">Developer Hub</a>
+        <a class='headerLink' style="font-weight:400; color:white; text-decoration:none;" href="https://circleci.com/changelog/ " target="_blank">What's New</a>
+        <button class="btn btn--topbar btn--toggle-search btn--toggle-search hidden-xs hidden-sm hidden-md hidden" data-toggle-search>
+          <span class="fa fa-search"></span>
+        </button>
+        <a class="btn btn--topbar submit-a-request headerLink" href="https://circleci.zendesk.com/hc/en-us/requests/new">{{dc 'system-topbar_button-submit_a_request'}}</a>
+        {{#if signed_in}}
+
+         <div id="user" class="user-info dropdown" data-helper="user_info">
+  <div class="btn with-image dropdown-toggle" role="button">
+    {{user_avatar class="user-avatar"}}
+   {{user_name}}
+  </div>
+  <div id="user-dropdown" class="dropdown-menu dropdown-menu-end dropdown-menu-caret" aria-expanded="false" role="menu">
+    <div role="menu" id="user-menu">
+      {{link "my_activities" role="menuitem"}}
+          {{my_profile role="menuitem"}}
+          {{change_password role="menuitem"}}
+          {{link "sign_out" role="menuitem"}}
+
+
+
+</div>
+
+  </div>
+</div>
+<script type='module'>
+	var headerLinks = document.getElementsByClassName('headerLink');
+  
+  for (var link = 0; link < headerLinks.length; link++) {
+  	headerLinks[link].addEventListener('click', (event) => {
+  		var linkText = event.target.textContent;
+  		ga('send', 'event', 'Header Link', 'click', linkText);
+  	});
+  }
+</script>
+
+      
+    {{else}}
+      {{#link "sign_in" class="sign-in"}}
+        {{t 'sign_in'}}
+      {{/link}}
+    {{/if}}
+      </div>
+    </div>
+  </header>
